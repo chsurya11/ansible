@@ -1,16 +1,16 @@
 - name: variables and files
   hosts: local
   connection: local
-  vars_prompt:
+  vars_prompt: # Variables
   - name: COURSE
     prompt: Please enter course name
-    private: yes
+    private: false
   - name: DURATION
     prompt: Please enter duration
-    private: yes
+    private: false
   - name: TRAINER
     prompt: Please enter the trainer name
-    private: yes
+    private: false
   tasks:
     - name: Print course information
       ansible.builtin.debug:
