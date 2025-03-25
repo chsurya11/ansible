@@ -1,7 +1,7 @@
 - name: variables and files
   hosts: local
   connection: local
-  vars_prompt: # Variables
+  vars_prompt:
   - name: COURSE
     prompt: Please enter course name
     private: false
