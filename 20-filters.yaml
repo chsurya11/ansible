@@ -50,6 +50,6 @@
 
     - name: check ip address is valid or not
       vars:
-        ip: "172.31.9.5"
+        ip: "172.31.9.55585586"
       ansible.builtin.debug:
         msg : "{{ ip | ansible.utils.ipaddr }}" 
