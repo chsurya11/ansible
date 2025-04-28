@@ -11,26 +11,25 @@
     - mysql
     - backend
     - frontend
-
   tasks:
-    - name: install aws pip libraries
-      ansible.builtin.pip:
-        name: "{{ item }}"
-        executable: pip3.9
+  - name: install aws pip libraries
+    ansible.builtin.pip:
+      name: "{{ item }}"
+      executable: pip3.9
       loop:
       - boto3
       - botocore
 
-    - name: create ec2 instances
-      amazon.aws.ec2_instance:
-        name: "{{ item }}"
-        subnet_id: "{{ subnet_id }}"
-        security_group: "{{ security_id }}"
-        image_id: "{{ ami_id }}"
-        instance_id: "{{ instance_type }}"
+  - name: create ec2 instances
+    amazon.aws.ec2_instance:
+      name: "{{ item }}"
+      subnet_id: "{{ subnet_id }}"
+      security_group: "{{ security_id }}"
+      image_id: "{{ ami_id }}"
+      instance_id: "{{ instance_type }}"
       loop: "{{ instances }}"
       register: ec2_info
 
-    - name: print ec2_info
-      ansible.builtin.debug:
-        msg: "{{ ec2_info }}"
+  - name: print ec2_info
+    ansible.builtin.debug:
+      msg: "{{ ec2_info }}"
