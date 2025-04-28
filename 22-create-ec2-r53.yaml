@@ -3,11 +3,11 @@
   hosts: local
   vars:
     subnet_id: subnet-0505a9ed4dd6a9de1 
-    security_id: sg-0db26095ad210b195
+    sg_id: sg-0db26095ad210b195
     ami_id: ami-09c813fb71547fc4f
     instance_type: t3.micro
     zone: jiocoinmarket.online 
-    instance:
+    instances:
     - mysql
     - backend
     - frontend
@@ -16,15 +16,14 @@
     ansible.builtin.pip:
       name: "{{ item }}"
       executable: pip3.9
-      loop:
-      - boto3
-      - botocore
-
+    loop:
+    - boto3
+    - botocore
   - name: create ec2 instances
     amazon.aws.ec2_instance:
       name: "{{ item }}"
       subnet_id: "{{ subnet_id }}"
-      security_group: "{{ security_id }}"
+      security_group: "{{ sg_id }}"
       image_id: "{{ ami_id }}"
       instance_id: "{{ instance_type }}"
       loop: "{{ instances }}"
