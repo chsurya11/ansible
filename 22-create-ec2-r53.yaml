@@ -2,17 +2,17 @@
   connection: local
   hosts: local
   vars:
-    subnet_id: subnet-0505a9ed4dd6a9de1
+    subnet_id: subnet-0505a9ed4dd6a9de1 
     sg_id: sg-0db26095ad210b195
     ami_id: ami-09c813fb71547fc4f
     instance_type: t3.micro
-    zone: jiocoinmarket.online
+    zone: jiocoinmarket.online 
     instances:
     - mysql
     - backend
     - frontend
   tasks:
-  - name: Install AWS Python libraries
+  - name: install aws pip libraries
     ansible.builtin.pip:
       name: "{{ item }}"
       executable: pip3.9
@@ -25,10 +25,10 @@
       subnet_id: "{{ subnet_id }}"
       security_group: "{{ sg_id }}"
       image_id: "{{ ami_id }}"
-      instance_type: "{{ instance_type }}"
-    loop: "{{ instances }}"
-    register: ec2_info
+      instance_id: "{{ instance_type }}"
+      loop: "{{ instances }}"
+      register: ec2_info
 
-  # - name: print ec2_info
-  #   ansible.builtin.debug:
-  #     msg: "{{ ec2_info }}"
+  - name: print ec2_info
+    ansible.builtin.debug:
+      msg: "{{ ec2_info }}"
